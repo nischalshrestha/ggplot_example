@@ -1,10 +1,13 @@
 # ggplot_example
 
-Example of ggplot tasks using the learnr package for experiments. 
+Example of ggplot tasks using the `learnr` package for user study experiments. 
 
-The `learnr` essentially allows one to create a Shiny app either:
+The `learnr` package allows one to write in RMarkdown and run the document as an interactive Shiny app, allowing code execution. This is nifty for design of programming tasks such as plots.
+
+# Run
+You have two options:
 1) Locally on the computer via RStudio 'Run Document' command on the [ggplot.Rmd](https://github.com/nischalshrestha/ggplot_example/blob/master/ggplot/ggplot.Rmd) file, or
-2) On a server like shinyserver.io: https://nshrest.shinyapps.io/ggplot_tasks/
+2) You can publish the app on a server like shinyserver.io: https://nshrest.shinyapps.io/ggplot_tasks/ (or your own server)
 
 The first option is the least riskiest as it doesn't rely on shinyservers being stable etc.
 
