@@ -1,0 +1,12 @@
+name: ggplot_tasks
+title: ggplot_tasks
+username:
+account: nshrest
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1785583
+bundleId: 2787575
+url: https://nshrest.shinyapps.io/ggplot_tasks/
+when: 1581307979.92665
+asMultiple: FALSE
+asStatic: FALSE

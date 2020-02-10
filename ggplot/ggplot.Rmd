@@ -1,0 +1,114 @@
+---
+title: "Plotting with ggplot"
+output: 
+  learnr::tutorial:
+    fig_caption: no
+    progressive: yes
+    allow_skip: false
+    toc: true
+    toc_depth: 2
+    toc_float: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+# first, some packages for interactive tutorial
+library(knitr)
+library(learnr)
+library(gradethis) # not really necessary if we're not interested in automatic code grading (and answers vary wildly!)
+library(ggplot2)
+# code checking options
+tutorial_options(exercise.timelimit = 60, exercise.completion = TRUE, exercise.checker = gradethis::grade_learnr)
+# by default, let's not show code as many are written for learnr
+opts_chunk$set(comment = NA)
+```
+
+```{r echo=FALSE}
+# declare any dataframes here
+mpg <- ggplot2::mpg
+```
+
+## Introduction
+
+In this experiment, you will recreate two different plots using R's `ggplot` library. Before that, let's do a quick introduction on how to plot using `ggplot`.
+
+To make a graph in `ggplot` this is the basic template:
+
+```r
+ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+```
+
+where `<DATA>` is the dataframe, `<GEOM_FUNCTION>` is the type of plot and `<MAPPINGS>` are the x and y variables. To make a graph, you need to replace the bracketed sections in the code below with a dataset, a geom function, or a collection of mappings.
+
+Let's look at an example with the **mpg** dataset. This dataset is fuel economy data from 1999 and 2008 for 38 popular models of car. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car. Here it is:
+
+```{r}
+mpg
+```
+
+Here is an example of a scatterplot of **mpg** data, where we look at the relationship between `displ` (as our x) and `hwy` (as our y):
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+Going back to our template, note the following:
+
+- The `<DATA>` is replaced with **mpg**
+- The `<GEOM_FUNCTION>` is replaced with `geom_point` for scatterplot*
+- The `<MAPPINGS>` is replaced with `x = displ, y = hwy`, our x and y variables
+
+*Keep in mind that you can use multiple geom functions.
+
+Click on the 'Next Topic' button to move on to your Task 1.
+
+## Task 1
+
+Using the same data **mpg** as before:
+
+```{r echo=FALSE}
+mpg
+```
+
+
+<!--Source: https://ggplot2.tidyverse.org/reference/geom_smooth.html-->
+Recreate the following plot:
+
+```{r echo=FALSE}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)
+```
+
+
+```{r task1, exercise = TRUE, exercise.lines = 5}
+
+
+
+```
+
+Once you are done or if you would like to move on, click on the 'Next Topic' button for Task 2.
+
+## Task 2
+
+Using the same data **mpg** as before:
+
+```{r echo=FALSE}
+mpg
+```
+
+<!--Source: https://ggplot2.tidyverse.org/reference/geom_bar.html-->
+Recreate the following plot:
+
+```{r echo=FALSE}
+ggplot(mpg, aes(class)) + 
+  geom_bar(aes(fill = drv), position = position_stack(reverse = TRUE)) +
+  coord_flip() +
+  theme(legend.position = "top")
+```
+
+```{r task2, exercise = TRUE, exercise.lines = 5}
+
+```
