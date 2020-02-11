@@ -180,7 +180,6 @@ library(knitr)
 library(learnr)
 library(gradethis) # not really necessary if we're not interested in automatic code grading (and answers vary wildly!)
 library(ggplot2)
-library(shiny)
 library(glue)
 # function to record events
 tutorial_event_recorder <- function(tutorial_id, tutorial_version, user_id, 
@@ -189,10 +188,11 @@ tutorial_event_recorder <- function(tutorial_id, tutorial_version, user_id,
   cat("event: ", event, "\n", sep = "")
   if (!is.null(data[['code']])) {
     time_stamp <- format(Sys.time(), "%a %b %d %X %Y")
-    print(data)
     print(paste(time_stamp, data$code, data$error_message))
+    # store timestamp, code, and any errors in a file 
+    # TODO change format to something better like csv
     fileConn <- file("executions.txt", open="at")
-    writeLines(glue("----\n", time_stamp, "\n----\n", data$code, "~~~~\nError: ", 
+    writeLines(paste("----\n", time_stamp, "\n----\n", data$code, "~~~~\nError: ", 
                     ifelse(!is.null(data$error_message), data$error_message, "none")), fileConn)
     close(fileConn)
   }

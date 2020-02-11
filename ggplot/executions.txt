@@ -1,63 +1,57 @@
 ----
-Mon Feb 10 22:01:05 2020
+ Mon Feb 10 22:13:41 2020 
 ----
-ggplot(mpg, aes(displ, hwy)) +
+ ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, se=c)
+
+ ~~~~
+Error:  none
+----
+ Mon Feb 10 22:14:00 2020 
+----
+ ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)
+
+ ~~~~
+Error:  none
+----
+ Mon Feb 10 22:14:09 2020 
+----
+ ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, )
+
+ ~~~~
+Error:  none
+----
+ Mon Feb 10 22:14:14 2020 
+----
+ ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
   geom_smooth(method = lm, s)
 
-~~~~
-Error: object 's' not found
+ ~~~~
+Error:  object 's' not found
 ----
-Mon Feb 10 22:01:18 2020
+ Mon Feb 10 22:14:21 2020 
 ----
-ggplot(mpg, aes(displ, hwy)) +
+ ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
-  geom_smooth(method = lm)
+  geom_smooth(method = lm, s\)
 
-~~~~
-Error: none
+ ~~~~
+Error:  <text>:3:29: unexpected input
+2:   geom_point() +
+3:   geom_smooth(method = lm, s\
+                               ^
 ----
-Mon Feb 10 22:02:43 2020
+ Mon Feb 10 22:14:36 2020 
 ----
-ggplot(mpg, aes(displ, hwy)) +
+ ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
-  geom_smooth(method = lm, se=c("hi"))
+  geom_smooth(method = lm, se = FALSE)
 
-~~~~
-Error: none
-----
-Mon Feb 10 22:03:08 2020
-----
-ggplot(mpg, aes(displ, hwy)) +
-  geom_point() +
-  geom_smooth(method = lm, se=c\)
-
-~~~~
-Error: list("<text>:3:32: unexpected input\n2:   geom_point() +\n3:   geom_smooth(method = lm, se=c\\\n                                  ^")
-----
-Mon Feb 10 22:03:22 2020
-----
-ggplot(mpg, aes(displ, hwy)) +
-  geom_point() +
-  geom_smooth(method = lm, se=c)
-
-~~~~
-Error: none
-----
-Mon Feb 10 22:04:09 2020
-----
-ggplot(mpg, aes(displ, hwy)) +
-  geom_point() +
-  geom_smooth(method = lm, se=c)
-
-~~~~
-Error: none
-----
-Mon Feb 10 22:04:30 2020
-----
-ggplot(mpg, aes(displ, hwy)) +
-  geom_point() +
-  geom_smooth(method = lm, se=c)
-
-~~~~
-Error: none
+ ~~~~
+Error:  none
