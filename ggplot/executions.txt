@@ -1,0 +1,63 @@
+----
+Mon Feb 10 22:01:05 2020
+----
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, s)
+
+~~~~
+Error: object 's' not found
+----
+Mon Feb 10 22:01:18 2020
+----
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+~~~~
+Error: none
+----
+Mon Feb 10 22:02:43 2020
+----
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, se=c("hi"))
+
+~~~~
+Error: none
+----
+Mon Feb 10 22:03:08 2020
+----
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, se=c\)
+
+~~~~
+Error: list("<text>:3:32: unexpected input\n2:   geom_point() +\n3:   geom_smooth(method = lm, se=c\\\n                                  ^")
+----
+Mon Feb 10 22:03:22 2020
+----
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, se=c)
+
+~~~~
+Error: none
+----
+Mon Feb 10 22:04:09 2020
+----
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, se=c)
+
+~~~~
+Error: none
+----
+Mon Feb 10 22:04:30 2020
+----
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, se=c)
+
+~~~~
+Error: none
