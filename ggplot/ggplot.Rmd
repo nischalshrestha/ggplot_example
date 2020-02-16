@@ -17,18 +17,27 @@ library(knitr)
 library(learnr)
 library(gradethis) # not really necessary if we're not interested in automatic code grading (and answers vary wildly!)
 library(ggplot2)
+library(rvest)
 # function to record code execution events
 tutorial_event_recorder <- function(tutorial_id, tutorial_version, user_id, event, data) {
   if (!is.null(data[['code']])) {
     time_stamp <- format(Sys.time(), "%a %b %d %X %Y")
     print(paste(time_stamp, data$code, data$error_message))
-    # store timestamp, code, and any errors in a file 
+    # store in csv file: time, code, error, warning
     print(as.character(time_stamp))
     x <- data.frame(
           time = as.character(time_stamp), 
           code = as.character(data$code), 
-          error = ifelse(!is.null(data$error_message), data$error_message, "none")
+          error = ifelse(!is.null(data$error_message), data$error_message, "")
         )
+    # if there is no error message, check if there is a warning
+    if (is.null(data$error_message)) {
+      html_file <- data$output
+      page <- read_html(html_file)
+      pre_node <- html_node(page, css='pre')  
+      # if there's warning store the message, else leave it blank
+      x[['warning']] = ifelse(grepl("Warning", pre_node, fixed=TRUE), html_text(pre_node), "")
+    }
     write.table(x, file = "executions.csv", sep = ",", col.names = !file.exists("executions.csv"), row.names = FALSE, append=TRUE)
   }
 }

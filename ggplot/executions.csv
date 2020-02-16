@@ -1,16 +1,27 @@
-"time","code","error"
-"Sat Feb 15 20:52:34 2020","ggplot(mpg, aes(displ, hwy)) +
-  geom_point() +
-  geom_smooth(method = l)
-
-","object 'l' not found"
-"Sat Feb 15 20:52:37 2020","ggplot(mpg, aes(displ, hwy)) +
-  geom_point() +
-  geom_smooth(method = lm)
-
-","none"
-"Sat Feb 15 20:53:59 2020","ggplot(mpg, aes(displ, hwy)) +
+"time","code","error","warning"
+"Sun Feb 16 13:42:45 2020","ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
   geom_smooth(method = lm, se = FALSE)
 
-","none"
+","",""
+"Sun Feb 16 13:43:11 2020","ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm, se = c())
+
+","","Warning: Computation failed in `stat_smooth()`:
+argument is of length zero"
+"Sun Feb 16 13:43:21 2020","ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(mmethod = lm, se = FALSE)
+
+","","Warning: Ignoring unknown parameters: mmethod"
+"Sun Feb 16 13:48:57 2020","ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(mmethod = l, se = FALSE)
+
+","object 'l' not found"
+"Sun Feb 16 13:49:55 2020","ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(mmethod = x, se = FALSE)
+
+","object 'x' not found"
