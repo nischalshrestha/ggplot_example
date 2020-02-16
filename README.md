@@ -13,7 +13,7 @@ The first option is the least riskiest as it doesn't rely on shinyservers being 
 
 # Dependencies:
 
-You need RStudio (v1.0.136 or later) and the following R packages:
+You need the latest R (version 3.6.2), RStudio (v1.0.136 or later) and the following R packages:
 
 - **ggplot2** (to plot)
 - **knitr** (to run the Rmd file)
