@@ -15,10 +15,11 @@ The first option is the least riskiest as it doesn't rely on shinyservers being 
 
 You need RStudio (v1.0.136 or later) and the following R packages:
 
-- ggplot2
-- knitr
-- learnr
-- shiny
-- gradethis (current not being used much)
+- ggplot2 (to plot)
+- knitr (to run the Rmd file)
+- shiny (to allow shiny prerendered app for learnr)
+- learnr (to run the interactive tutorial format)
+- rvest (to parse html output for logging warnings)
+- gradethis (to check code for correctness---currently not being used)
 
 All of these can be installed via `install.packages(...)` command. 
