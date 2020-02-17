@@ -28,7 +28,8 @@ tutorial_event_recorder <- function(tutorial_id, tutorial_version, user_id, even
     x <- data.frame(
           time = as.character(time_stamp), 
           code = as.character(data$code), 
-          error = ifelse(!is.null(data$error_message), data$error_message, "")
+          error = ifelse(!is.null(data$error_message), data$error_message, ""),
+          warning = ""
         )
     # if there is no error message, check if there is a warning
     if (is.null(data$error_message)) {
@@ -38,7 +39,7 @@ tutorial_event_recorder <- function(tutorial_id, tutorial_version, user_id, even
       # if there's warning store the message, else leave it blank
       x[['warning']] = ifelse(grepl("Warning", pre_node, fixed=TRUE), html_text(pre_node), "")
     }
-    write.table(x, file = "executions.csv", sep = ",", col.names = !file.exists("executions.csv"), row.names = FALSE, append=TRUE)
+    write.table(x, file = "PX_Executions.csv", sep = ",", col.names = !file.exists("PX_Executions.csv"), row.names = FALSE, append=TRUE)
   }
 }
 options(tutorial.event_recorder = tutorial_event_recorder)

@@ -1,0 +1,19 @@
+"time","code","error","warning"
+"Sun Feb 16 23:01:32 2020","ggplot(mpg, aes(drv, cty)) + 
+  geom_violin()
+","",""
+"Sun Feb 16 23:01:38 2020","ggplot(mpg, aes(drv, cty)) + 
+  geom_violin(
+","<text>:4:0: unexpected end of input
+2:   geom_violin(
+3: 
+  ^",""
+"Sun Feb 16 23:01:58 2020","ggplot(mpg, aes(drv, cty)) + 
+  geom_violin(d)
+","object 'd' not found",""
+"Sun Feb 16 23:02:06 2020","ggplot(mpg, aes(drv, cty)) + 
+  geom_violin(d=1)
+","`data` must be a data frame, or other object coercible by `fortify()`, not a numeric vector",""
+"Sun Feb 16 23:02:12 2020","ggplot(mpg, aes(drv, cty)) + 
+  geom_violin(daa=1)
+","","Warning: Ignoring unknown parameters: daa"
