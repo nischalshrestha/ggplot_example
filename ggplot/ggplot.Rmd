@@ -54,7 +54,7 @@ mpg <- ggplot2::mpg
 
 ## Introduction
 
-In this experiment, you will recreate two different plots using R's `ggplot` library. Before that, let's do a quick introduction on how to plot using `ggplot`.
+In this experiment, you will recreate three different plots using R's `ggplot` library. Before that, let's do a quick introduction on how to plot using `ggplot`.
 
 To make a graph in `ggplot` this is the basic template:
 
