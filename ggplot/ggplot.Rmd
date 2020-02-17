@@ -97,13 +97,12 @@ mpg
 ```
 
 
-<!--Source: https://ggplot2.tidyverse.org/reference/geom_smooth.html-->
+<!--Based on: https://ggplot2-book.org/getting-started.html#basic-use-->
 Recreate the following plot:
 
 ```{r echo=FALSE}
-ggplot(mpg, aes(displ, hwy)) +
-  geom_point() +
-  geom_smooth(method = lm, se = FALSE)
+ggplot(mpg, aes(drv, cty)) + 
+  geom_violin()
 ```
 
 
@@ -123,17 +122,45 @@ Using the same data **mpg** as before:
 mpg
 ```
 
-<!--Source: https://ggplot2.tidyverse.org/reference/geom_bar.html-->
+<!--Based on: https://ggplot2-book.org/getting-started.html#axes-->
+Recreate the following plot:
+
+```{r echo=FALSE}
+ggplot(mpg, aes(drv, hwy)) +
+  geom_jitter(width = 0.25, alpha = 1 / 2) +
+  xlab("Wheel drive") + 
+  ylab("Highway mpg")
+```
+
+```{r task2, exercise = TRUE, exercise.lines = 5}
+
+```
+
+Once you are done or if you would like to move on, click on the 'Next Topic' button for Task 3.
+
+## Task 3
+
+Using the same data **mpg** as before:
+
+```{r echo=FALSE}
+mpg
+```
+
+<!--
+Based on 
+https://ggplot2.tidyverse.org/reference/geom_bar.html https://ggplot2-book.org/getting-started.html#qplot-facetting
+-->
 Recreate the following plot:
 
 ```{r echo=FALSE}
 ggplot(mpg, aes(class)) + 
   geom_bar(aes(fill = drv), position = position_stack(reverse = TRUE)) +
   coord_flip() +
+  facet_wrap(~cyl) +
   theme(legend.position = "top")
 ```
 
-```{r task2, exercise = TRUE, exercise.lines = 5}
+```{r task3, exercise = TRUE, exercise.lines = 5}
 
 ```
 
