@@ -3,11 +3,12 @@ title: "Plotting with ggplot"
 output: 
   learnr::tutorial:
     fig_caption: no
-    progressive: yes
+    progressive: no
     allow_skip: false
-    toc: true
-    toc_depth: 2
-    toc_float: true
+    toc: false
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
 runtime: shiny_prerendered
 ---
 
@@ -20,7 +21,9 @@ library(ggplot2)
 library(rvest)
 # function to record code execution events
 tutorial_event_recorder <- function(tutorial_id, tutorial_version, user_id, event, data) {
-  if (!is.null(data[['code']])) {
+  if (!is.null(data[['code']]) && 
+      all(unlist(lapply(strsplit(data[['code']], "\n"), function(x) ifelse(x == "", FALSE, TRUE)))) && 
+      data[['code']][[1]] != "") {
     time_stamp <- format(Sys.time(), "%a %b %d %X %Y")
     print(paste(time_stamp, data$code, data$error_message))
     # store in csv file: time, code, error, warning
@@ -43,9 +46,9 @@ tutorial_event_recorder <- function(tutorial_id, tutorial_version, user_id, even
   }
 }
 options(tutorial.event_recorder = tutorial_event_recorder)
-tutorial_options(exercise.timelimit = 60, exercise.completion = TRUE, exercise.checker = gradethis::grade_learnr)
+tutorial_options(exercise.timelimit = 60, exercise.completion = TRUE)
 # by default, let's not show code as many are written for learnr
-opts_chunk$set(comment = NA)
+opts_chunk$set(comment = NA, fig.width=4, fig.height=3)
 ```
 
 ```{r echo=FALSE}
@@ -53,28 +56,25 @@ opts_chunk$set(comment = NA)
 mpg <- ggplot2::mpg
 ```
 
-## Introduction
+## Warm up
 
-In this experiment, you will recreate three different plots using R's `ggplot` library. Before that, let's do a quick introduction on how to plot using `ggplot`.
-
-To make a graph in `ggplot` this is the basic template:
+In this experiment, you will recreate three different plots using R's `ggplot` library. Before that, let's do a quick intro on using `ggplot` and the code editor in this. To make a graph in `ggplot` this is the basic template:
 
 ```r
 ggplot(data = <DATA>) + 
   <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
 ```
 
-where `<DATA>` is the dataframe, `<GEOM_FUNCTION>` is the type of plot and `<MAPPINGS>` are the x and y variables. To make a graph, you need to replace the bracketed sections in the code below with a dataset, a geom function, or a collection of mappings.
+where `<DATA>` is the dataframe, `<GEOM_FUNCTION>` is the type of plot and `<MAPPINGS>` are the x and y variables. Let's look at an example with the **mpg** dataset. This dataset is fuel economy data from 1999 and 2008 for 38 popular models of car:
 
-Let's look at an example with the **mpg** dataset. This dataset is fuel economy data from 1999 and 2008 for 38 popular models of car. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car. Here it is:
-
-```{r}
-mpg
+```{r echo=FALSE}
+head(mpg, 3)
 ```
 
-Here is an example of a scatterplot of **mpg** data, where we look at the relationship between `displ` (as our x) and `hwy` (as our y):
+Here is an example of a scatterplot of **mpg** data, where we look at the relationship between `displ` (x) and `hwy` (y). 
+Execute the following by clicking on "Run Code" (if you ever want to reset code, click "Start over"):
 
-```{r}
+```{r task0, exercise = TRUE, exercise.lines = 2, fig.width=4, fig.height=2}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy))
 ```
@@ -89,80 +89,90 @@ Going back to our template, note the following:
 
 Click on the 'Next Topic' button to move on to your Task 1.
 
-## Task 1
+## Task 1: Data
 
 Using the same data **mpg** as before:
 
 ```{r echo=FALSE}
-mpg
+head(mpg, 5)
 ```
 
-
+## Task 1: Plot
 <!--Based on: https://ggplot2-book.org/getting-started.html#basic-use-->
 Recreate the following plot:
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.width=4, fig.height=3}
 ggplot(mpg, aes(drv, cty)) + 
   geom_violin()
 ```
 
 
-```{r task1, exercise = TRUE, exercise.lines = 5}
+```{r task1, exercise = TRUE, exercise.lines = 5, fig.width=4, fig.height=3}
 
 
 
 ```
 
-Once you are done or if you would like to move on, click on the 'Next Topic' button for Task 2.
 
-## Task 2
+<!-- ```{r task1-check} -->
+<!-- grade_result( -->
+<!--   pass_if(~ .result != "", "Great! Please move on to the next task."), -->
+<!--   fail_if(~ .result == "", "No code was submitted.") -->
+<!-- ) -->
+<!-- ``` -->
 
-Using the same data **mpg** as before:
+Once you are done or if you would like to move on, notify the experimenter you are ready for Task 2.
 
-```{r echo=FALSE}
-mpg
-```
+<!-- TODO: separate out task 2 and task 3 into their own Rmds -->
+
+<!-- ## Task 2 -->
+
+<!-- Using the same data **mpg** as before: -->
+
+<!-- ```{r echo=FALSE} -->
+<!-- mpg -->
+<!-- ``` -->
 
 <!--Based on: https://ggplot2-book.org/getting-started.html#axes-->
-Recreate the following plot:
+<!-- Recreate the following plot: -->
 
-```{r echo=FALSE}
-ggplot(mpg, aes(drv, hwy)) +
-  geom_jitter(width = 0.25, alpha = 1 / 2) +
-  xlab("Wheel drive") + 
-  ylab("Highway mpg")
-```
+<!-- ```{r echo=FALSE} -->
+<!-- ggplot(mpg, aes(drv, hwy)) + -->
+<!--   geom_jitter(width = 0.25, alpha = 1 / 2) + -->
+<!--   xlab("Wheel drive") +  -->
+<!--   ylab("Highway mpg") -->
+<!-- ``` -->
 
-```{r task2, exercise = TRUE, exercise.lines = 5}
+<!-- ```{r task2, exercise = TRUE, exercise.lines = 5} -->
 
-```
+<!-- ``` -->
 
-Once you are done or if you would like to move on, click on the 'Next Topic' button for Task 3.
+<!-- Once you are done or if you would like to move on, click on the 'Next Topic' button for Task 3. -->
 
-## Task 3
+<!-- ## Task 3 -->
 
-Using the same data **mpg** as before:
+<!-- Using the same data **mpg** as before: -->
 
-```{r echo=FALSE}
-mpg
-```
+<!-- ```{r echo=FALSE} -->
+<!-- mpg -->
+<!-- ``` -->
 
 <!--
-Based on 
+Based on
 https://ggplot2.tidyverse.org/reference/geom_bar.html https://ggplot2-book.org/getting-started.html#qplot-facetting
 -->
-Recreate the following plot:
+<!-- Recreate the following plot: -->
 
-```{r echo=FALSE}
-ggplot(mpg, aes(class)) + 
-  geom_bar(aes(fill = drv), position = position_stack(reverse = TRUE)) +
-  coord_flip() +
-  facet_wrap(~cyl) +
-  theme(legend.position = "top")
-```
+<!-- ```{r echo=FALSE} -->
+<!-- ggplot(mpg, aes(class)) +  -->
+<!--   geom_bar(aes(fill = drv), position = position_stack(reverse = TRUE)) + -->
+<!--   coord_flip() + -->
+<!--   facet_wrap(~cyl) + -->
+<!--   theme(legend.position = "top") -->
+<!-- ``` -->
 
-```{r task3, exercise = TRUE, exercise.lines = 5}
+<!-- ```{r task3, exercise = TRUE, exercise.lines = 5} -->
 
-```
+<!-- ``` -->
 
 
